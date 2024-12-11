@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Video Player</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            overflow: hidden; /* Prevent scrolling */
+            padding: 0;
+        }
+
+        /* Video container with dynamic width and height */
+        .video-container {
+            position: relative;
+            width: 90vw; /* 90% of the viewport width */
+            height: 50vw; /* Maintain 16:9 ratio */
+            max-width: 800px; /* Max width */
+            max-height: 450px; /* Max height */
+            background-color: #000;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .video-player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <iframe class="video-player" src="https://streamable.com/0zufvi?" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+    </div>
+
+    <script>
+        // Function to update the video container size dynamically
+        function resizeVideoPlayer() {
+            const container = document.querySelector('.video-container');
+            const width = window.innerWidth * 0.9; // 90% of the viewport width
+            const height = width * (9 / 16); // Maintain 16:9 aspect ratio
+
+            container.style.width = `${Math.min(width, 800)}px`; // Max width of 800px
+            container.style.height = `${Math.min(height, 450)}px`; // Max height of 450px
+        }
+
+        // Call resizeVideoPlayer when the page loads and when the window is resized
+        window.addEventListener('load', resizeVideoPlayer);
+        window.addEventListener('resize', resizeVideoPlayer);
+    </script>
+</body>
+</html>
